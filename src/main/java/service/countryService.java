@@ -31,11 +31,24 @@ public class countryService implements CommandLineRunner{
 		countries.put("1", c);
 		
 	}
-	
-	public country getcountry (String id)
+	public String returnCapital()
 	{
-		if(countries.containsKey(id))
-			return countries.get(id);
+		return count.getCapital();
+	}
+	public String returnPopulation()
+	{
+		return count.getPopulation() ;
+	}
+	
+	public String returnName()
+	{
+		return count.getName();
+	}
+	
+	public country getcountry (String name)
+	{
+		if(countries.containsKey(name))
+			return countries.get(name);
 		else
 			return null ;
 	}

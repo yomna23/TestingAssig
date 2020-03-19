@@ -22,9 +22,9 @@ public class Countrycontroller {
 		return cs.getAll();
 	}
 	
-	@RequestMapping("{id}")
-	public country getCountry(@PathVariable("id") String id)
+	@RequestMapping("{name}")
+	public country getCountry(@PathVariable("name") String name)
 	{
-		return cs.getcountry(id);
+		return cs.getcountry(name);
 	}
 }
