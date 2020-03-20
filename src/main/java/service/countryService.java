@@ -20,15 +20,14 @@ public class countryService implements CommandLineRunner{
 	
 	private void returnService()
 	{  
-		
+		country c = new country();
 		String cap = count.getCapital();
 		String pop =count.getPopulation();
 		String nm = count.getName();
-		country c = new country();
 		c.setCapital(cap);
 		c.setPopulation(pop);
 		c.setName(nm);
-		countries.put("1", c);
+		countries.put("info",c);
 		
 	}
 	public String returnCapital()
@@ -45,15 +44,18 @@ public class countryService implements CommandLineRunner{
 		return count.getName();
 	}
 	
-	public country getcountry (String name)
+	public country getcountry(String name)
 	{
-		if(countries.containsKey(name))
-			return countries.get(name);
-		else
-			return null ;
+		   
+		 if(countries.contains(name))
+			 return countries.get(name);
+		     else
+		     return null ;
+			
 	}
+		 
 	
-	public Hashtable <String, country> getAll()
+	public Hashtable<String,country> getAll()
 	{
 		return countries;
 	}
