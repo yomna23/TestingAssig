@@ -26,11 +26,16 @@ public class Countrycontroller {
 		return cs.getAll();
 	}
 	
-	@RequestMapping("{name}")
-	public country getCountry(@PathVariable("name") String name)
-	{
+	
+	 
+    @RequestMapping(value="/guide")
+    @ResponseBody
+	public country getCountry(@RequestParam("name")String name) 
+	{   
+		
 		return cs.getcountry(name);
-	}
+	}  
+	
 	
 	
 	

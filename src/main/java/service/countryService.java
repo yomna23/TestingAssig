@@ -2,9 +2,13 @@ package service;
 
 import java.util.Hashtable;
 
+
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
 
 import model.country;
 
@@ -13,52 +17,47 @@ import model.country;
 @Service
 public class countryService implements CommandLineRunner{
 
+	
+	
 	RestTemplate restTemplate = new RestTemplate();
 	country count = restTemplate.getForObject("https://restcountries.eu/rest/v2/alpha/co", country.class);
-	
 	Hashtable<String,country> countries = new Hashtable<String,country>();
+	
+	
+
 	
 	private void returnService()
 	{  
-		country c = new country();
-		String cap = count.getCapital();
-		String pop =count.getPopulation();
-		String nm = count.getName();
-		c.setCapital(cap);
-		c.setPopulation(pop);
-		c.setName(nm);
-		countries.put("info",c);
+		countries.put("colombia", count);
 		
 	}
-	public String returnCapital()
-	{
-		return count.getCapital();
-	}
-	public String returnPopulation()
-	{
-		return count.getPopulation() ;
-	}
 	
-	public String returnName()
-	{
-		return count.getName();
-	}
-	
-	public country getcountry(String name)
-	{
-		   
-		 if(countries.contains(name))
+    
+	@Cacheable(value="countryService",key="#name")
+	public country getcountry(String name) 
+	{ 
+		
+		try
+        {   
+             System.out.println("Going to sleep for 3 Secs.. to simulate backend call.");
+            Thread.sleep(1000*3) ;   	
+        } 
+        catch (InterruptedException e) 
+        {
+            e.printStackTrace();
+        }
+		
+		if(countries.containsKey(name))
 			 return countries.get(name);
-		     else
+		 else
 		     return null ;
 			
 	}
-		 
-	
-	public Hashtable<String,country> getAll()
-	{
-		return countries;
-	}
+		
+  public Hashtable<String,country> getAll()
+  {
+	  return countries ;
+  }
 
 	@Override
 	public void run(String... args) throws Exception {
