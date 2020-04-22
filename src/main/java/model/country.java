@@ -1,23 +1,32 @@
 package model;
 
-public class country {
+import java.io.Serializable;
+
+public class country implements Serializable  {
+
+private static final long serialVersionUID = 5517244812959569947L;
+
 String name ;
 String population ;
 String capital ;
 
+
 public country()
 {}
 
-public country(String name, String population, String capital) {
+public country(String name ,String population, String capital) {
 	super();
-	this.name = name;
 	this.population = population;
 	this.capital = capital;
+	this.name = name ;
 }
+
+
 
 public String getName() {
 	return name;
 }
+
 public void setName(String name) {
 	this.name = name;
 }
