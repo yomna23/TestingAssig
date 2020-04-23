@@ -57,10 +57,31 @@ class CountrycontrollerTest {
 	}
 	
 	@Test
+	void testCountryinfoFail() {
+		when(serv.getcountry(anyString())).thenReturn(c);
+	    country countryTest=co.getCountry(country_Name);
+	    String TN = countryTest.getName();
+	    String TC = countryTest.getCapital();
+	    String TP= countryTest.getPopulation();
+	    assertNotNull(countryTest);
+	    assertNotEquals(country_Name,TN);
+	    assertNotEquals(c.getCapital(),TC);
+	    assertNotEquals(c.getPopulation(),TP);
+	  
+	}
+	@Test
 	void testgetAll() {
 		when(serv.getAll()).thenReturn(Hc);
 		Hashtable<String,country> testResult = co.getAll();
 		    assertNotNull(testResult);
+		  	
+	}
+	 
+	@Test
+	void testgetAllFail() {
+		when(serv.getAll()).thenReturn(Hc);
+		Hashtable<String,country> testResult = co.getAll();
+		    assertNull(testResult);
 		  	
 	}
 	 
